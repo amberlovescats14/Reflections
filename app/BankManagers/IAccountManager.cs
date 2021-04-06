@@ -1,10 +1,8 @@
 ﻿using System;
-namespace app
+namespace app.BankManagers
 {
     public interface IAccountManager
     {
-        public string FIName { get; set; }
-
         double GetBalance();
 
         double AddTotal(double deposit);
