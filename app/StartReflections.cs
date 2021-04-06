@@ -1,23 +1,26 @@
 ﻿using System;
 using System.Linq;
+using app.BankManagers;
+
 namespace app
 {
-    public static class StartReflections
+    public class StartReflections
     {
-        public static void RunReflections()
+        public void RunReflections()
         {
-            Type manager = typeof(BankManagers.AccountManager);
+            Type managerType = typeof(AccountManager);
 
-            var properties = manager.GetFields();
-            var methods = manager.GetMethods();
+            var constructor = managerType.GetConstructor(Array.Empty<Type>());
+            var properties = managerType.GetFields().ToList();
+            var methods = managerType.GetMethods();
 
-            properties.ToList().ForEach(p => Console.WriteLine(p.Name));
+            properties.ForEach(p => Console.WriteLine(p.GetType().FullName));
 
             var getBalance = methods.FirstOrDefault(m => m.Name.ToLowerInvariant().Contains("balance"));
             if (getBalance != null)
             {
-                // will invoke
-                Console.WriteLine("Found Balance");
+                var balance = getBalance.Invoke(constructor.Invoke(Array.Empty<object>()), Array.Empty<Object>());
+                Console.WriteLine($"Found Balance: {balance}");
             }
 
         }

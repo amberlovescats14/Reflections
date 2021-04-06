@@ -5,7 +5,10 @@ namespace app.BankManagers
     {
         double GetBalance();
 
+        /// <summary>
+        /// Add deposit to the balance total
+        /// </summary>
+        /// <returns>New Balance</returns>
         double AddTotal(double deposit);
-
     }
 }

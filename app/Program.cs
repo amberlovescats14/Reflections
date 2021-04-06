@@ -6,7 +6,7 @@ namespace app
     {
         static void Main(string[] args)
         {
-            StartReflections.RunReflections();
+            Activator.CreateInstance<StartReflections>().RunReflections();
             Console.WriteLine("Hello World!");
         }
 
